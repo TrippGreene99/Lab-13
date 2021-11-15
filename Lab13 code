@@ -1,0 +1,52 @@
+import java.util.Random;
+
+
+class Baby implements Runnable{
+  
+    private int time;
+    private String name;
+    public Baby(String name) {
+        time = new Random().nextInt(5000);
+        this.name = name;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.printf("My name is %s I am going to sleep for %d ms%n",
+            name,time);
+
+            Thread.sleep(time);
+
+            System.out.printf("My name is %s, I am awake, feed me!!!%n",name);
+
+        } 
+
+
+        catch (InterruptedException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Thread b1 = new Thread(new Baby("Noah"));
+        Thread b2 = new Thread(new Baby("Olivia"));
+        Thread b3 = new Thread(new Baby("Liam"));
+        Thread b4 = new Thread(new Baby("Emma"));
+        Thread b5 = new Thread(new Baby("Amelia"));
+
+        b1.start();
+        b2.start();
+        b3.start();
+        b4.start();
+        b5.start();
+
+    }
+
+}
